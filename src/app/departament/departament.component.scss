@@ -1,0 +1,41 @@
+.depHeader {
+  margin: 0 auto;
+  flex-direction: column;
+  background-color: gray;
+}
+
+.depHeader mat-toolbar{
+  margin: 0 auto;
+  width: auto;
+}
+.depList{
+  width: 65%;
+  margin: 0 auto;
+}
+
+mat-table{
+  margin-top:20px;
+}
+
+.id-column{
+  flex:0 0 5%;
+}
+
+.title-column{
+  flex:0 0 50%;
+
+}
+
+.acronym-column{
+  flex:0 0 15%;
+
+}
+.active-column{
+  flex:0 0 10%;
+
+}
+
+.action-column{
+  flex:0 0 20%;
+
+}
