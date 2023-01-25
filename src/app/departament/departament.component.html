@@ -1,40 +1,41 @@
 <mat-toolbar>
   <span>Departaments</span>
 </mat-toolbar>
+
 <div class="depList">
 <mat-table  [dataSource]="dataSourse" class="mat-elevation-z8">
   <!-- Position Id -->
-  <ng-container matColumnDef="Id">
-    <mat-header-cell  *matHeaderCellDef>Id</mat-header-cell>
-    <mat-cell  *matCellDef="let item">{{ item.departamentId }}</mat-cell>
+  <ng-container matColumnDef="Id" class="id-column">
+    <mat-header-cell  *matHeaderCellDef class="id-column">Id</mat-header-cell>
+    <mat-cell  *matCellDef="let item" class="id-column">{{ item.departamentId }}</mat-cell>
   </ng-container>
 
   <!-- Nome Column -->
-  <ng-container matColumnDef="Title">
-    <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
-    <mat-cell  *matCellDef="let item">{{item.titulo }}</mat-cell>
+  <ng-container matColumnDef="Title" class="title-column">
+    <mat-header-cell *matHeaderCellDef class="title-column">Title</mat-header-cell>
+    <mat-cell  *matCellDef="let item" class="title-column">{{item.titulo }}</mat-cell>
   </ng-container>
 
   <!-- Nome Cpf -->
-  <ng-container matColumnDef="Acronym">
-    <mat-header-cell  *matHeaderCellDef>Acronym</mat-header-cell>
-    <mat-cell  *matCellDef="let item">{{ item.sigla }}</mat-cell>
+  <ng-container matColumnDef="Acronym" class="acronym-column">
+    <mat-header-cell  *matHeaderCellDef class="acronym-column">Acronym</mat-header-cell>
+    <mat-cell  *matCellDef="let item" class="acronym-column">{{ item.sigla }}</mat-cell>
   </ng-container>
 
   <!--  DataEnvio -->
-  <ng-container matColumnDef="Active">
-    <mat-header-cell  *matHeaderCellDef>Active</mat-header-cell>
-    <mat-cell  *matCellDef="let item">{{ item.ativo}}</mat-cell>
+  <ng-container matColumnDef="Active" class="active-column">
+    <mat-header-cell  *matHeaderCellDef class="active-column">Active</mat-header-cell>
+    <mat-cell  *matCellDef="let item" class="active-column">{{ item.ativo}}</mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="Actions">
-    <mat-header-cell *matHeaderCellDef="" class="action-colun">
-      <button mat-mini-fab color="accent" aria-label="Adionar Currículo">
-        <mat-icon>add</mat-icon>
+  <ng-container matColumnDef="Actions" class="action-column" >
+    <mat-header-cell *matHeaderCellDef class="action-column">
+      <button mat-mini-fab color="accent" aria-label="Adionar Currículo" class="action-column-header">
+        <mat-icon class="btAction">add</mat-icon>
       </button>
     </mat-header-cell>
 
-    <mat-cell *matCellDef="let item" class="action-colun">
+    <mat-cell *matCellDef="" class="action-column">
       <button mat-icon-button color="accent" aria-label="Editar Currículo">
         <mat-icon>edit</mat-icon>
       </button>
