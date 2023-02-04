@@ -17,7 +17,7 @@ export class DepartamentService {
   //depto:Departament;
 
   constructor(
-    private http:HttpClient, 
+    private http:HttpClient,
     private router:Router
   ) { }
 
@@ -39,7 +39,7 @@ export class DepartamentService {
       this.router.navigateByUrl('Departament')
      })
    }else{
-    data.guiIdDepartamentId= UUID.UUID(); 
+    data.guiIdDepartamentId= UUID.UUID();
     return this.create(data).subscribe(()=>{
       this.router.navigateByUrl('Departament')
     })
@@ -58,8 +58,9 @@ export class DepartamentService {
 
   remove(data:Partial<Departament>){
     console.log("Desativa")
+    data.ativo=false;
     //return this.http.delete<Departament>(this.apiUrl + 'Departaments/AlteraStatus'+ id).pipe(first());
-    return this.http.put<Departament>(this.apiUrl + 'Departaments/AlteraStatus/'+ data.departamentId, data).pipe(first());
+    return this.http.put<Departament>(this.apiUrl + 'Departaments/'+ data.departamentId, data).pipe(first());
   }
 
 

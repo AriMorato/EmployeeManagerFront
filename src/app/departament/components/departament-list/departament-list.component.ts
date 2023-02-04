@@ -1,11 +1,15 @@
+
 import { Component, OnInit, Output} from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { DepartamentModule } from '../../module/departament/departament.module';
-//import { Employee } from '../../model/employee'; preciso criar o model de employee para carregar a lista e poder deletar
+
+
 import { Departament } from '../../model/departement';
 import { DepartamentService } from '../../servicos/departament.service';
+import { Employee } from 'src/app/employee/model/employee';
+import { EmloyeeService } from '../../../employee/servicos/emloyee.service';
 
 
 @Component({
@@ -16,7 +20,9 @@ import { DepartamentService } from '../../servicos/departament.service';
 export class DepartamentListComponent implements OnInit {
 
   lstDepartaments:Observable<Departament[]> | null = null;
-  //lstDepartaments:Observable<Employee[]> | null = null; declarar a lista para popular com a lista de empregados
+  lstEmployee:Observable<Employee[]> | null = null;
+
+  contaEmployee:number=0;
   dataSourse = new MatTableDataSource<Departament>();
   status?:boolean;
 
@@ -30,6 +36,7 @@ export class DepartamentListComponent implements OnInit {
 
   constructor(
     private restApi:DepartamentService,
+    private restApiEmployee:EmloyeeService,
     private router:Router,
     private route:ActivatedRoute,
 
@@ -57,11 +64,19 @@ export class DepartamentListComponent implements OnInit {
   }
 
   goToDelete(departamento: Departament){
-
-
-    this.restApi.remove(departamento).subscribe(()=>{
-      this.router.navigateByUrl('Departament')
+    this.restApiEmployee.contaEmployee(departamento.departamentId).subscribe((res:any)=>{
+      this.lstEmployee = res
+      for(let item in this.lstEmployee ){
+        if(item!=''){
+          this.contaEmployee++;
+        }
+      }
+     if(this.contaEmployee==0){
+      this.restApi.remove(departamento).subscribe()
+      this.router.navigateByUrl('Employee')
+     }
     })
+   
   }
   /*
   onResolve(){

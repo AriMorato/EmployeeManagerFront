@@ -69,8 +69,6 @@ export class EmployeeListComponent implements OnInit {
   }
 
   goToDelete(employee: Employee){
-    this.restApi.remove(employee).subscribe(()=>{
-      this.router.navigateByUrl('Employee')
-    })
+    this.restApi.remove(employee).subscribe()
   }
 }

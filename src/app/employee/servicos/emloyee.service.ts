@@ -63,10 +63,14 @@ export class EmloyeeService {
     return this.http.put<Employee>(this.apiUrl + 'Employees/'+ data.employeeId, data).pipe(first());
   }
 
+  contaEmployee(id:number){
+    return this.http.get<Employee>(this.apiUrl + 'Employees/EmployeePorDep/'+ id)
+  }
 
   remove(data:Partial<Employee>){
     console.log("Desativa")
+    data.ativo=false;
     //return this.http.delete<Departament>(this.apiUrl + 'Departaments/AlteraStatus'+ id).pipe(first());
-    return this.http.put<Employee>(this.apiUrl + 'Employees/AlteraStatus/'+ data.employeeId, data).pipe(first());
+    return this.http.put<Employee>(this.apiUrl + 'Employees/'+ data.employeeId, data).pipe(first());
   }
 }
