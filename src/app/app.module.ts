@@ -10,33 +10,31 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DepartamentComponent } from './departament/departament.component';
+import { DepartamentModule } from './departament/module/departament/departament.module';
 import { EmployeeComponent } from './employee/employee.component';
-import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http'
-
-
-
+import { EmployeeModule } from './employee/module/employee/employee.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    DepartamentComponent,
-    EmployeeComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatTableModule,
-    HttpClientModule,
-    MatCardModule,
-    MatIconModule
+    declarations: [
+        AppComponent,
+        DepartamentComponent,
+        EmployeeComponent
 
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatTableModule,
+        MatCardModule,
+        MatIconModule,
+        DepartamentModule,
+        EmployeeModule
+
+    ]
 })
 export class AppModule { }

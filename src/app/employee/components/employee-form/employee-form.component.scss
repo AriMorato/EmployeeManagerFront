@@ -1,0 +1,59 @@
+.contentFrm{
+  margin: 0 auto;
+  margin-top:2%;
+  max-width: 80%;
+
+}
+
+mat-card{
+  padding:1%;
+  margin:0 auto;
+  min-width: 500px;
+}
+mat-card-actions{
+  text-align: center;
+  flex-wrap:wrap;
+  display:flex;
+ flex-direction: row;
+ align-self: center;
+}
+.btnFrm{
+  width: 150px;
+  min-width: 150px;
+
+}
+
+.actionForm{
+  width: 100%;
+}
+
+.btnCancel{
+  margin-left:5px;
+}
+
+
+.full-width{
+  justify-self:left;
+  align-self:left;
+  width: 45%;
+  padding-left: 10px;
+  margin-top:1%;
+}
+
+.partial-width{
+  width: 45%;
+  padding-left: 10px;
+}
+
+.depSelect{
+  text-align:left;
+  
+}
+
+
+
+
+
+
+
+

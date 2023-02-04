@@ -1,0 +1,51 @@
+.contentFrm{
+  margin: 0 auto;
+  margin-top:2%;
+
+}
+
+mat-card{
+  margin:2em;
+  margin:auto;
+  max-width: 50%;
+  min-width: 500px;
+}
+mat-card-actions{
+  text-align: center;
+  flex-wrap:wrap;
+  display:flex;
+ flex-direction: row;
+ align-self: center;
+
+}
+.btnFrm{
+  width: 150px;
+  min-width: 150px;
+
+}
+
+.btnCancel{
+  margin-left:5px;
+}
+
+
+.full-width{
+  justify-self:left;
+  align-self:left;
+  width: 45%;
+  padding-left: 10px;
+  margin-top:3%;
+}
+
+.partial-width{
+  width: 45%;
+  padding-left: 10px;
+}
+
+
+
+
+
+
+
+

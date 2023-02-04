@@ -1,7 +1,7 @@
 export interface Departament{
-    id:number,
-    guiId:string,
-    title:string,
-    acronym:string,
-    active:boolean
+    departamentId:number,
+    guiIdDepartamentId:string,
+    titulo:string,
+    acronsiglaymn:string,
+    ativo:boolean
 }
