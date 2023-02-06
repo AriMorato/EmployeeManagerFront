@@ -56,12 +56,13 @@ export class DepartamentListComponent implements OnInit {
   }
 
   goToEditDep(departamento: Departament){
-
-    var status = departamento
-    this.router.navigateByUrl('/Departament/editDepartamento',{
-      state: departamento
-    })
-  }
+    if(!departamento.ativo==false){
+        var status = departamento
+        this.router.navigateByUrl('/Departament/editDepartamento',{
+          state: departamento
+        })
+      }
+    }
 
   goToDelete(departamento: Departament){
     this.restApiEmployee.contaEmployee(departamento.departamentId).subscribe((res:any)=>{
@@ -73,7 +74,7 @@ export class DepartamentListComponent implements OnInit {
       }
      if(this.contaEmployee==0){
       this.restApi.remove(departamento).subscribe()
-      this.router.navigateByUrl('Employee')
+      this.router.navigateByUrl('Departament')
      }
     })
    

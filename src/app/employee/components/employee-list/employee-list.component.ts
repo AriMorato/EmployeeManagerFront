@@ -61,11 +61,12 @@ export class EmployeeListComponent implements OnInit {
    }
 
   goToEditEmp(employee: Employee){
-
-    var status = employee
-    this.router.navigateByUrl('/Employee/editEmployee',{
-      state: employee
-    })
+    if(! employee.ativo==false){
+      var status = employee
+      this.router.navigateByUrl('/Employee/editEmployee',{
+        state: employee
+      })
+    }
   }
 
   goToDelete(employee: Employee){

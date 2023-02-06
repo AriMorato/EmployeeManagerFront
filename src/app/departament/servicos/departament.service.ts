@@ -34,7 +34,7 @@ export class DepartamentService {
 
     console.log(data)
 
-   if(data.departamentId){
+   if(data.departamentId ){
      return this.update(data).subscribe(()=>{
       this.router.navigateByUrl('Departament')
      })
