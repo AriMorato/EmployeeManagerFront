@@ -10,19 +10,19 @@
 
   <!-- Nome Column -->
   <ng-container matColumnDef="Titulo" class="title-column">
-    <mat-header-cell *matHeaderCellDef class="title-column">Title</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef class="title-column">Titulo</mat-header-cell>
     <mat-cell  *matCellDef="let item" class="title-column">{{item.titulo }}</mat-cell>
   </ng-container>
 
   <!-- Nome Cpf -->
   <ng-container matColumnDef="Sigla" class="acronym-column">
-    <mat-header-cell  *matHeaderCellDef class="acronym-column">Acronym</mat-header-cell>
+    <mat-header-cell  *matHeaderCellDef class="acronym-column">Sigla</mat-header-cell>
     <mat-cell  *matCellDef="let item" class="acronym-column">{{ item.sigla }}</mat-cell>
   </ng-container>
 
   <!--  DataEnvio -->
   <ng-container matColumnDef="Status" class="active-column">
-    <mat-header-cell  *matHeaderCellDef class="active-column">Active</mat-header-cell>
+    <mat-header-cell  *matHeaderCellDef class="active-column">Status</mat-header-cell>
     <mat-cell  *matCellDef="let item" class="active-column">{{item.ativo}}</mat-cell>
   </ng-container>
 
