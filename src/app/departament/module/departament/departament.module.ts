@@ -1,19 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule } from '@angular/material/table';
-import { HttpClientModule } from '@angular/common/http';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input'
-import { MatCheckboxModule} from '@angular/material/checkbox';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { MaterialModuleModule } from 'src/app/SharedModule/material-module/material-module.module';
 
-import { DepartamentListComponent } from '../../components/departament-list/departament-list.component';
 import { DepartamentFormComponent } from '../../components/departament-form/departament-form.component';
+import { DepartamentListComponent } from '../../components/departament-list/departament-list.component';
+import { DepartamentComponent } from '../../departament.component';
+
 import { DepartamentRoutingModule } from './departament-routing.module';
 
 
@@ -21,24 +16,18 @@ import { DepartamentRoutingModule } from './departament-routing.module';
 @NgModule({
   declarations: [
    DepartamentListComponent,
-   DepartamentFormComponent
-
+   DepartamentFormComponent,
+   DepartamentComponent
   ],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatTableModule,
-    HttpClientModule,
-    MatCardModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatCheckboxModule,
-    MatInputModule,
+    MaterialModuleModule,
     FormsModule,
     ReactiveFormsModule,
-    DepartamentRoutingModule
-  ]
+    DepartamentRoutingModule,
+    RouterModule
+  ],
+  providers:[]
 })
 export class DepartamentModule { }

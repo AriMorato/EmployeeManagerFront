@@ -1,15 +1,9 @@
-import { first } from 'rxjs/operators';
-import { Component, OnInit, Input, Inject } from '@angular/core';
-import { DepartamentModule } from '../../module/departament/departament.module';
-import { FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { isEmpty, Observable } from 'rxjs';
-import { DepartamentService } from '../../servicos/departament.service';
-import { Router, RouterEvent, ActivatedRoute, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { Location } from '@angular/common';
-import { MatFormFieldControl } from '@angular/material/form-field';
-import { Injectable } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { NonNullableFormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Departament } from '../../model/departement';
+import { DepartamentService } from '../../servicos/departament.service';
 
 
  @Injectable({

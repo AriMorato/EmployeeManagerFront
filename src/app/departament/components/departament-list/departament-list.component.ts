@@ -1,15 +1,14 @@
-
-import { Component, OnInit, Output} from '@angular/core';
-import { catchError, Observable, of } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { DepartamentModule } from '../../module/departament/departament.module';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Employee } from 'src/app/employee/model/employee';
 
-
+import { EmloyeeService } from '../../../employee/servicos/emloyee.service';
 import { Departament } from '../../model/departement';
 import { DepartamentService } from '../../servicos/departament.service';
-import { Employee } from 'src/app/employee/model/employee';
-import { EmloyeeService } from '../../../employee/servicos/emloyee.service';
+
+
 
 
 @Component({

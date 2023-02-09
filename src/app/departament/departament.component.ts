@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DepartamentListComponent } from './components/departament-list/departament-list.component';
-
-
 
 
 @Component({
