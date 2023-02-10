@@ -8,7 +8,7 @@ import { MatFormFieldControl } from '@angular/material/form-field';
 import { Injectable } from '@angular/core'
 import { MatIcon } from '@angular/material/icon';
 
-import { EmployeeModule } from '../../module/employee/employee.module';
+
 import { Employee } from '../../model/employee';
 import { EmloyeeService } from '../../servicos/emloyee.service';
 import { Departament } from 'src/app/departament/model/departement';

@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { Router, RouterEvent, ActivatedRoute } from '@angular/router';
-import { EmloyeeService } from '../../servicos/emloyee.service';
-import { catchError, Observable, of, isEmpty } from 'rxjs';
-import { Employee } from '../../model/employee';
-import { EmployeeModule } from '../../module/employee/employee.module';
-import { Injectable } from '@angular/core';
-import { Departament } from '../../../departament/model/departement';
 import { Location } from '@angular/common';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { NonNullableFormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { Departament } from '../../../departament/model/departement';
+import { Employee } from '../../model/employee';
+import { EmloyeeService } from '../../servicos/emloyee.service';
 
 
 @Injectable({

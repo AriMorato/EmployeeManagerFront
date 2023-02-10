@@ -1,50 +1,33 @@
-.depHeader {
-  margin: 0 auto;
-  flex-direction: column;
-  background-color: gray;
- 
+.depContentSearch{
+ display:flex;
+ flex-direction: row;
+ width: 100%;
+}
+.headTitle{
+  width: 250px;
 }
 
-.depHeader mat-toolbar{
-  margin: 0 auto;
+.controlForm{
+  width: 20%;
+}
+
+.linkList{
+ padding-left: 10px;
+ width: 100px;
+}
+.depSearchForm{
   width: 100%;
-}
-.depList{
-  margin: 0 auto;
-  width: 65%;
-  height: 100%;
- 
+  text-align: right;
+  padding-top: 15px;
+  height: auto;
 }
 
-mat-table{
-  margin-top:20px;
-  max-height: 75%;
-}
-
-.id-column{
-  flex:0 0 5%;
+.depSearchField{
+  width: 30%;
 }
 
 
-.title-column{
-  flex:0 0 55%;
 
+.btAction{
+  width:auto;
 }
-
-.acronym-column{
-  flex:0 0 15%;
-
-}
-.active-column{
-  flex:0 0 15%;
-
-}
-
-.action-column{
-  flex:0 0 125px;
-}
-
-.action-column-header{
-  margin: 0 auto;
-}
-

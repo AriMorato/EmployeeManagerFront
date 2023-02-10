@@ -1,13 +1,18 @@
-<mat-toolbar>
-    <span>Departamento</span>
-   <!--  <div class="depHeader"> 
-     <button mat-raised-button routerLink="">Listar Departamentos</button>
-
-    <input matInput placeholder="Sigla" formControlName="sigla" />
-
-    <button mat-mini-fab color="accent" aria-label="Adicionar Departamento" class="action-column-header" routerLink="novoDepartamento">
-      <mat-icon class="btAction">add</mat-icon>
-    </button> 
- </div>  -->
+<mat-toolbar class="depContentSearch">
+  <div class="headTitle"><span>Departament</span></div>
+  <div class="controlForm">
+    <div class="linkList">
+      <button mat-button class="listarDepto" routerLink="listDepartamento">Listar Departamentos</button>
+    </div>
+  </div>
+  <div class="depSearchForm">      
+    <mat-form-field class="depSearchField">
+      <mat-label>Pesquisa</mat-label>
+      <input matInput placeholder="Pesquisar" value="" class="depSearchInput">
+    </mat-form-field>
+    <button mat-mini-fab color="800" aria-label="Adicionar Departamento" class="depSearchBtn" onclick="buscar()">
+      <mat-icon class="btAction">search</mat-icon>
+    </button>
+</div>
 </mat-toolbar>
 
