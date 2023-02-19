@@ -1,18 +1,18 @@
 <mat-toolbar class="depContentSearch">
   <div class="headTitle"><span>Departament</span></div>
   <div class="controlForm">
-    <div class="linkList">
-      <button mat-button class="listarDepto" routerLink="listDepartamento">Listar Departamentos</button>
+    <div class="newDepto">
+     <button mat-mini-fab color="primary" aria-label="Listar Departamento" class="action-column-header" (click) ="onRoute('list')">
+      <mat-icon class="btAction">list</mat-icon>
+    </button>
+    <div class="btTxt"><span>Listar Departamentos</span></div>
+    </div>
+    <div class="newDepto">
+      <button mat-mini-fab color="primary" aria-label="Adicionar Departamento" class="action-column-header" (click) ="onRoute('novo')">
+        <mat-icon class="btAction">add</mat-icon>
+      </button>
+      <div class="btTxt"><span>Adicionar Departamento</span></div>
     </div>
   </div>
-  <div class="depSearchForm">      
-    <mat-form-field class="depSearchField">
-      <mat-label>Pesquisa</mat-label>
-      <input matInput placeholder="Pesquisar" value="" class="depSearchInput">
-    </mat-form-field>
-    <button mat-mini-fab color="800" aria-label="Adicionar Departamento" class="depSearchBtn" onclick="buscar()">
-      <mat-icon class="btAction">search</mat-icon>
-    </button>
-</div>
 </mat-toolbar>
 

@@ -25,8 +25,8 @@ export class DepartamentService {
 
     return this.http.get<Departament[]>(this.apiUrl + 'Departaments')
       .pipe(
-        first(),
-        tap(departamentos=>console.log(departamentos))
+        first()//,
+        //tap(departamentos=>console.log(departamentos))
         )
   }
 

@@ -11,7 +11,7 @@
 }
 .depList{
   margin: 0 auto;
-  width: 65%;
+  width: 75%;
   height: 100%;
 
 }
@@ -46,5 +46,27 @@ mat-table{
 
 .action-column-header{
   margin: 0 auto;
+  width: 125px;
+}
+
+.depSearchForm{
+  width: 100%;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid black; */
+}
+
+.depSearchField{
+  width: 400px;
+}
+
+.depSearchBtn{
+  margin-left:5px;
+  margin-top:7px;
+}
+mat-paginator{
+  margin-top:10px;
+  width: 100%;
 }
 

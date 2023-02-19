@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { Departament } from '../../model/departement';
 import { DepartamentService } from '../../servicos/departament.service';
 
@@ -35,8 +35,9 @@ export class DepartamentFormComponent implements OnInit {
         private formBuilder:NonNullableFormBuilder,
         private router:Router,
         private location:Location,
-        private restApi:DepartamentService
-     ){
+        private restApi:DepartamentService,
+        private activatedRoute: ActivatedRoute
+        ){
         const nav = this.router.getCurrentNavigation();
         this.departamento =<Departament>nav?.extras.state;
   }
@@ -61,11 +62,10 @@ export class DepartamentFormComponent implements OnInit {
 
   onSubmit(){
     this.restApi.save(this.form.value)
-    //this.onCancel()
   }
 
   onCancel(){
-   //this.location.back();
-   this.router.navigateByUrl('Departament')
+   console.log(this.router.url)
+   this.router.navigateByUrl('Departament/listDepartamento')
   }
 }

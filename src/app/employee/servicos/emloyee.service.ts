@@ -44,12 +44,13 @@ export class EmloyeeService {
 
    if(data.employeeId){
      return this.update(data).subscribe(()=>{
-      this.router.navigateByUrl('Employee')
+      this.router.navigateByUrl('Employee/listEmployee')
      })
    }else{
     data.guiIdEmployeeId= UUID.UUID();
+    data.ativo = true;
     return this.create(data).subscribe(()=>{
-      this.router.navigateByUrl('Employee')
+      this.router.navigateByUrl('Employee/listEmployee')
     })
     }
   }

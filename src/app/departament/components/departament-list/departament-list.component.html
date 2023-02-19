@@ -1,36 +1,51 @@
 <app-departament></app-departament>
-
 <div class="depList">
-<mat-table  [dataSource]="dataSourse" class="mat-elevation-z8">
+<div class="depSearchForm">
+<form [formGroup]="form">
+    <mat-form-field class="depSearchField">
+     <mat-label>Pesquisar Departamento</mat-label>
+     <input matInput  placeholder="Pesquisar Departamento" class="depSearchInput" width="700px" formControlName="buscaTitulo" #input (keyup) = "applyFilter($event)">
+    </mat-form-field>
+
+
+   <button mat-mini-fab color="800" aria-label="Limpar Pesquisa Departamento" class="depSearchBtn" (click) = "refresh()">
+    <mat-icon class="btAction">refresh</mat-icon>
+  </button>
+
+
+  </form>
+  </div>
+  <mat-table [dataSource]="dataSourse" class="mat-elevation-z8" matSort #depMatSort ="matSort">
   <!-- Position Id -->
-  <ng-container matColumnDef="Id" class="id-column">
-    <mat-header-cell  *matHeaderCellDef class="id-column">Id</mat-header-cell>
+  <ng-container matColumnDef="departamentId" class="id-column">
+    <mat-header-cell  *matHeaderCellDef mat-sort-header class="id-column">Id</mat-header-cell>
     <mat-cell  *matCellDef="let item" class="id-column">{{ item.departamentId }}</mat-cell>
   </ng-container>
 
   <!-- Nome Column -->
-  <ng-container matColumnDef="Titulo" class="title-column">
-    <mat-header-cell *matHeaderCellDef class="title-column">Titulo</mat-header-cell>
+  <ng-container matColumnDef="titulo" class="title-column">
+    <mat-header-cell *matHeaderCellDef mat-sort-header class="title-column">Titulo</mat-header-cell>
     <mat-cell  *matCellDef="let item" class="title-column">{{item.titulo }}</mat-cell>
   </ng-container>
 
   <!-- Nome Cpf -->
-  <ng-container matColumnDef="Sigla" class="acronym-column">
-    <mat-header-cell  *matHeaderCellDef class="acronym-column">Sigla</mat-header-cell>
+  <ng-container matColumnDef="sigla" class="acronym-column">
+    <mat-header-cell  *matHeaderCellDef mat-sort-header class="acronym-column">Sigla</mat-header-cell>
     <mat-cell  *matCellDef="let item" class="acronym-column">{{ item.sigla }}</mat-cell>
   </ng-container>
 
   <!--  DataEnvio -->
-  <ng-container matColumnDef="Status" class="active-column">
-    <mat-header-cell  *matHeaderCellDef class="active-column">Status</mat-header-cell>
+  <ng-container matColumnDef="ativo" class="active-column">
+    <mat-header-cell  *matHeaderCellDef mat-sort-header class="active-column">Status</mat-header-cell>
     <mat-cell  *matCellDef="let item" class="active-column">{{item.ativo}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="Action" class="action-column" >
     <mat-header-cell *matHeaderCellDef class="action-column">
-      <button mat-mini-fab color="accent" aria-label="Adicionar Departamento" class="action-column-header" routerLink="novoDepartamento">
+    <!--   <button mat-mini-fab color="accent" aria-label="Adicionar Departamento" class="action-column-header" routerLink="novoDepartamento">
         <mat-icon class="btAction">add</mat-icon>
-      </button>
+      </button> -->
+      Ações
     </mat-header-cell>
 
     <mat-cell *matCellDef="let item"  class="action-column">
@@ -50,4 +65,5 @@
   <mat-row  *matRowDef="let row; columns: displayedColumns"></mat-row>
 
 </mat-table>
+<mat-paginator [pageSizeOptions]="[3,5,10,25,100]" aria-labels = "Qtde por página" class="mat-elevation-z8"></mat-paginator>
 </div>

@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { catchError, Observable, of} from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable, of} from 'rxjs';
+import { NonNullableFormBuilder } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router, RouterEvent, ActivatedRoute, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
-import { Location } from '@angular/common';
-import { MatFormFieldControl } from '@angular/material/form-field';
-import { Injectable } from '@angular/core'
-import { MatIcon } from '@angular/material/icon';
-
-
+import { Router, ActivatedRoute} from '@angular/router';
 import { Employee } from '../../model/employee';
 import { EmloyeeService } from '../../servicos/emloyee.service';
 import { Departament } from 'src/app/departament/model/departement';
@@ -25,38 +21,70 @@ export class EmployeeListComponent implements OnInit {
   lstEmployee:Observable<Employee[]> | null = null;
   lstDepartement:Observable<Departament[]> | null = null;
 
-  dataSource = new MatTableDataSource<Employee>();
+  postCriteria:any;
+
+  /* dataSource = new MatTableDataSource<Employee>(); */
+  dataSourse !: MatTableDataSource<Employee>;
+
+
+  @ViewChild(MatPaginator) paginator !: MatPaginator
+  /*  @ViewChild(MatSort) sort !: MatSort */
+  @ViewChild('empMatSort') sort !: MatSort
+
+
+
   status?:boolean;
 
+
    readonly displayedColumns = [
-   'Id',
-   'Nome',
-   'DataContratacao',
-   'Departamento',
-   'Status',
+   'employeeId',
+   'nome',
+   'dataContratacao',
+   'departamentId',
+   'ativo',
    'Actions'
   ]
 
   constructor(
+    private formBuilder:NonNullableFormBuilder,
     private restApi:EmloyeeService,
-    private router:Router,
-    private route:ActivatedRoute,
-    private restApiDep:DepartamentService
+    private restApiDep:DepartamentService,
+    private router:Router
   ){
-     this.restApiDep.lstDepartaments().subscribe((res:any)=>{
+      this.restApiDep.lstDepartaments().subscribe((res:any)=>{
       this.lstDepartement = res;
+
+      this.refresh();
     })
 
   }
+
+
   ngOnInit(){
-    console.log(this.dataSource)
-     this.refresh()
+   /*  console.log(this.dataSource)
+     this.refresh() */
   }
 
+
+  form = this.formBuilder.group({
+    buscaTitulo:''
+  })
+
+
   refresh(){
+
+    if(this.form.controls.buscaTitulo.value!=''){
+      this.form.controls.buscaTitulo.reset()
+    }
+    
    this.restApi.lstEmployee
     ().subscribe((res:any)=>{
-      this.dataSource = res;
+      this.postCriteria = res;
+      this.dataSourse = new MatTableDataSource(this.postCriteria);
+      this.dataSourse.paginator = this.paginator;
+
+      this.dataSourse.sort = this.sort
+      console.log(this.postCriteria)
     })
    }
 
@@ -71,5 +99,14 @@ export class EmployeeListComponent implements OnInit {
 
   goToDelete(employee: Employee){
     this.restApi.remove(employee).subscribe()
+  }
+
+  applyFilter(event:Event ){
+    const filterPost  = (event.target as HTMLInputElement).value
+    //const filterPost = this.form.controls.buscaTitulo.value;
+    this.dataSourse.filter = filterPost.trim().toLowerCase();
+    if(this.dataSourse.paginator){
+      this.dataSourse.paginator.firstPage()
+    }
   }
 }

@@ -52,5 +52,30 @@ mat-table{
   margin: 0 auto;
 }
 
+.empSearchForm{
+  width: 100%;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid black; */
+}
+
+.empSearchField{
+  width: 400px;
+}
+
+.empSearchBtn{
+  margin-left:5px;
+  margin-top:7px;
+}
+mat-paginator{
+  margin-top:10px;
+  width: 100%;
+}
+
+.empSearchInput{
+  width:700px;
+}
+
 
 

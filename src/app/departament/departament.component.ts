@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
+import { Router,} from '@angular/router';
+
 
 
 @Component({
@@ -11,12 +11,31 @@ import { MatTableDataSource } from '@angular/material/table';
 export class DepartamentComponent implements OnInit {
 
 
-  constructor(){
+  constructor(
+    private router:Router
+  ){}
 
-  }
+  ngOnInit(){}
 
-  ngOnInit(){
 
-  }
+  onRoute(data:String){
+    var navUrl:string=''
+
+    switch (data) {
+      case 'list':
+        navUrl = 'Departament/listDepartamento'
+        break;
+      case 'novo':
+        navUrl = 'Departament/novoDepartamento'
+          break;
+      case 'edit':
+        navUrl = 'Departament/editDepartamento'
+        break;
+      default: navUrl = ''
+        break;
+    }
+    /*  console.log(this.activatedRouter.firstChild?.fragment)
+    console.log(this.activatedRouter.routeConfig?.path?.)*/
+    this.router.navigateByUrl(navUrl)
+    }
 }
-

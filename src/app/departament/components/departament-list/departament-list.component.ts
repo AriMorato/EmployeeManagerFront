@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NonNullableFormBuilder } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Employee } from 'src/app/employee/model/employee';
 
@@ -9,55 +12,83 @@ import { Departament } from '../../model/departement';
 import { DepartamentService } from '../../servicos/departament.service';
 
 
-
-
 @Component({
   selector: 'app-departament-list',
   templateUrl: './departament-list.component.html',
   styleUrls: ['./departament-list.component.scss']
 })
+
 export class DepartamentListComponent implements OnInit {
 
-  lstDepartaments:Observable<Departament[]> | null = null;
+  /*  Esta coleção é populada apenas para verificar sr um departamento tem funcionários.
+      Caso tenha o Departamento não poderá ser Inativado */
   lstEmployee:Observable<Employee[]> | null = null;
 
+  //propriedade que representa o critério de filtro
+  postCriteria:any;
+
+  //propriedade de contagem do número de funcionários em um departamento
   contaEmployee:number=0;
-  dataSourse = new MatTableDataSource<Departament>();
+
+  //criação de uma propriedade de tipo MatDataSource, este tipado com Departamento
+  dataSourse !: MatTableDataSource<Departament>;
+
+  //aqui são criados os states
+  @ViewChild(MatPaginator) paginator !: MatPaginator
+  /*  @ViewChild(MatSort) sort !: MatSort */
+  @ViewChild('depMatSort') sort !: MatSort
   status?:boolean;
 
    readonly displayedColumns = [
-   'Id',
-   'Titulo',
-   'Sigla',
-   'Status',
+   'departamentId',
+   'titulo',
+   'sigla',
+   'ativo',
    'Action'
   ]
 
+
   constructor(
+    private formBuilder:NonNullableFormBuilder,
     private restApi:DepartamentService,
     private restApiEmployee:EmloyeeService,
-    private router:Router,
-    private route:ActivatedRoute,
+    private router:Router
+  ){
+    this.refresh();
+  }
 
-  ){}
-
+  form = this.formBuilder.group({
+    buscaTitulo:''
+  })
 
   ngOnInit(){
-    console.log("Ari")
-    this.refresh()
+   
   }
 
+
   refresh(){
+
+    if(this.form.controls.buscaTitulo.value!=''){
+      this.form.controls.buscaTitulo.reset()
+    }
+
     this.restApi.lstDepartaments
     ().subscribe((res:any)=>{
-      this.dataSourse = res;
+      this.postCriteria = res;
+      this.dataSourse = new MatTableDataSource(this.postCriteria);
+      this.dataSourse.paginator = this.paginator;
+
+      this.dataSourse.sort = this.sort
+      console.log(this.postCriteria)
     })
+
   }
+
 
   goToEditDep(departamento: Departament){
     if(!departamento.ativo==false){
         var status = departamento
-        this.router.navigateByUrl('/Departament/editDepartamento',{
+        this.router.navigateByUrl('Departament/editDepartamento',{
           state: departamento
         })
       }
@@ -73,27 +104,19 @@ export class DepartamentListComponent implements OnInit {
       }
      if(this.contaEmployee==0){
       this.restApi.remove(departamento).subscribe()
-      this.router.navigateByUrl('Departament')
+      this.router.navigateByUrl('Departament/listDepartamento')
      }
     })
-   
-  }
-  /*
-  onResolve(){
 
   }
-  onAdd(){
+
+  applyFilter(event:Event ){
+    const filterPost  = (event.target as HTMLInputElement).value
+    //const filterPost = this.form.controls.buscaTitulo.value;
+    this.dataSourse.filter = filterPost.trim().toLowerCase();
+    if(this.dataSourse.paginator){
+      this.dataSourse.paginator.firstPage()
+    }
   }
-
- loadEdit(departament:any){
-   console.log(departament)
-    var guiId: string = departament.guiIdDepartamentId
-    var guiIdplus = guiId.split('-').join('$');
-
-   this.router.navigate(['editDepartamento', guiIdplus],{relativeTo:this.route} )
-
-
-  } */
-
 
 }

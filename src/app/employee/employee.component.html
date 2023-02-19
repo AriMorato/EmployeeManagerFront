@@ -1,1 +1,17 @@
-
+<mat-toolbar class="empContentSearch">
+  <div class="headTitle"><span>Employee</span></div>
+  <div class="controlForm">
+    <div class="newEmployee">
+     <button mat-mini-fab color="primary" aria-label="Listar Employee" class="action-column-header" (click) ="onRoute('list')">
+      <mat-icon class="btAction">list</mat-icon>
+    </button>
+    <div class="btTxt"><span>Listar Employees</span></div>
+    </div>
+    <div class="newEmployee">
+      <button mat-mini-fab color="primary" aria-label="Adicionar Employee" class="action-column-header" (click) ="onRoute('novo')">
+        <mat-icon class="btAction">add</mat-icon>
+      </button>
+      <div class="btTxt"><span>Adicionar Employee</span></div>
+    </div>
+  </div>
+</mat-toolbar>

@@ -10,6 +10,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatPaginatorModule} from '@angular/material/paginator'
+import { MatSortModule } from '@angular/material/sort';
+
+/* Módulo comportalhido para carga dos recuros so Angular Material utilizados ao longo de todas a solução */
 
 @NgModule({
   exports:[
@@ -23,7 +27,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatToolbarModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class MaterialModuleModule { }

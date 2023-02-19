@@ -36,7 +36,8 @@ export class EmployeeFormComponent implements OnInit {
     nome:[''],
     sobrenome:[''],
     dataNascimento:[''],
-    dataContratacao:['']
+    dataContratacao:[''],
+    ativo:[true]
     })
 
     constructor(
@@ -57,7 +58,7 @@ export class EmployeeFormComponent implements OnInit {
         })
 
         if(this.employee != null){
-          this.titulo = "Editar Departamento"
+          this.titulo = "Editar Employee"
           this.btTitulo = "Atualizar"
 
           this.form.patchValue({
@@ -67,19 +68,21 @@ export class EmployeeFormComponent implements OnInit {
             nome:this.employee.nome,
             sobrenome:this.employee.sobrenome,
             dataNascimento:this.employee.dataNascimento,
-            dataContratacao:this.employee.dataContratacao
+            dataContratacao:this.employee.dataContratacao,
+            ativo:this.employee.ativo
           })
 
       }
+
     }
 
     onSubmit(){
       this.restApi.save(this.form.value)
-      //this.onCancel()
+      this.router.navigateByUrl('Employee/listEmployee')
     }
 
     onCancel(){
      //this.location.back();
-     this.router.navigateByUrl('Employee')
+     this.router.navigateByUrl('Employee/listEmployee')
     }
 }
