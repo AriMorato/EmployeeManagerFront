@@ -12,9 +12,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule} from '@angular/material/paginator'
 import { MatSortModule } from '@angular/material/sort';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+//O matPicker só trabalha bem se estiverem inportados também esses outros modulos
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter'
 
 /* Módulo comportalhido para carga dos recuros so Angular Material utilizados ao longo de todas a solução */
-
 @NgModule({
   exports:[
     MatButtonModule,
@@ -29,7 +32,13 @@ import { MatSortModule } from '@angular/material/sort';
     MatSelectModule,
     MatSnackBarModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatMomentDateModule
+  ],
+  providers:[
+    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}
   ]
 })
 export class MaterialModuleModule { }

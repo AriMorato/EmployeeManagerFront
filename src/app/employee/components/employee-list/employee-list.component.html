@@ -2,78 +2,141 @@
   <span>Employee</span>
 </mat-toolbar> -->
 <app-employee></app-employee>
+<!-- <div *ngIf = "lstEmployee | as dataSourse; else loading"> -->
 <div class="empList">
-  <div class="empList">
-  <div class="empSearchForm">
-  <form [formGroup]="form">
-      <mat-form-field class="empSearchField">
-       <mat-label>Pesquisar Departamento</mat-label>
-       <input matInput  placeholder="Pesquisar Departamento" class="empSearchInput" width="700px" formControlName="buscaTitulo" #input (keyup) = "applyFilter($event)">
-      </mat-form-field>
-
-
-     <button mat-mini-fab color="800" aria-label="Limpar Pesquisa Employee" class="empSearchBtn" (click) = "refresh()">
-      <mat-icon class="btAction">refresh</mat-icon>
-    </button>
-
-
-    </form>
+  <div *ngIf="dataSourse; else loading" class="empList">
+    <div class="empSearchForm">
+      <form [formGroup]="form">
+        <mat-form-field class="empSearchField">
+          <mat-label>Pesquisar Departamento</mat-label>
+          <input
+            matInput
+            placeholder="Pesquisar Departamento"
+            class="empSearchInput"
+            width="700px"
+            formControlName="buscaTitulo"
+            #input
+            (keyup)="applyFilter($event)"
+          />
+        </mat-form-field>
+        <button
+          mat-mini-fab
+          color="800"
+          aria-label="Limpar Pesquisa Employee"
+          class="empSearchBtn"
+          (click)="refresh()"
+        >
+          <mat-icon class="btAction">refresh</mat-icon>
+        </button>
+      </form>
     </div>
+    <mat-table
+      [dataSource]="dataSourse"
+      class="mat-elevation-z8"
+      matSort
+      #empMatSort="matSort"
+    >
+      <ng-container matColumnDef="employeeId" class="id-column">
+        <mat-header-cell *matHeaderCellDef class="id-column" mat-sort-header
+          >Id</mat-header-cell
+        >
+        <mat-cell *matCellDef="let item" class="id-column">{{
+          item.employeeId
+        }}</mat-cell>
+      </ng-container>
 
-  <mat-table  [dataSource]="dataSourse" class="mat-elevation-z8" matSort #empMatSort = "matSort">
-    <ng-container matColumnDef="employeeId" class="id-column">
-      <mat-header-cell  *matHeaderCellDef class="id-column" mat-sort-header>Id</mat-header-cell>
-      <mat-cell  *matCellDef="let item" class="id-column">{{ item.employeeId }}</mat-cell>
-    </ng-container>
+      <!-- Nome Column -->
+      <ng-container matColumnDef="nome" class="nome-column">
+        <mat-header-cell *matHeaderCellDef class="nome-column" mat-sort-header
+          >Nome</mat-header-cell
+        >
+        <mat-cell *matCellDef="let item" class="nome-column"
+          >{{ item.nome }} {{ item.sobrenome }}</mat-cell
+        >
+      </ng-container>
 
-    <!-- Nome Column -->
-    <ng-container matColumnDef="nome" class="nome-column">
-      <mat-header-cell *matHeaderCellDef class="nome-column" mat-sort-header>Nome</mat-header-cell>
-      <mat-cell  *matCellDef="let item" class="nome-column" >{{ item.nome }} {{item.sobrenome}}</mat-cell>
-    </ng-container>
+      <ng-container
+        matColumnDef="dataContratacao"
+        class="dataContratacao-column"
+      >
+        <mat-header-cell
+          *matHeaderCellDef
+          class="dataContratacao-column"
+          mat-sort-header
+          >Data Contratação</mat-header-cell
+        >
+        <mat-cell *matCellDef="let item" class="dataContratacao-column">{{
+          item.dataContratacao | date : "dd/MM/yyyy"
+        }}</mat-cell>
+      </ng-container>
 
+      <!--  DataEnvio -->
+      <ng-container matColumnDef="departamentId" class="departamento-column">
+        <mat-header-cell
+          *matHeaderCellDef
+          class="departemento-column"
+          mat-sort-header
+          >Departamento</mat-header-cell
+        >
+        <mat-cell *matCellDef="let item" class="departemento-column">{{
+          item.departamentId
+        }}</mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="dataContratacao" class="dataContratacao-column" >
-      <mat-header-cell  *matHeaderCellDef class="dataContratacao-column" mat-sort-header>Data Contratação</mat-header-cell>
-      <mat-cell  *matCellDef="let item" class="dataContratacao-column">{{ item.dataContratacao  | date : 'dd/MM/yyyy'}}</mat-cell>
-    </ng-container>
+      <!--  Status -->
+      <ng-container matColumnDef="ativo" class="active-column">
+        <mat-header-cell *matHeaderCellDef class="active-column" mat-sort-header
+          >Status</mat-header-cell
+        >
+        <mat-cell *matCellDef="let item" class="active-column">{{
+          item.ativo
+        }}</mat-cell>
+      </ng-container>
 
-    <!--  DataEnvio -->
-    <ng-container matColumnDef="departamentId" class="departamento-column">
-      <mat-header-cell  *matHeaderCellDef class="departemento-column" mat-sort-header>Departamento</mat-header-cell>
-      <mat-cell  *matCellDef="let item" class="departemento-column">{{item.departamentId}}</mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="Actions" class="action-column">
+        <mat-header-cell *matHeaderCellDef class="action-column">
+          <!-- <button mat-mini-fab color="accent" aria-label="Adicionar Employee" class="action-column-header" routerLink="novoEmployee">
+                <mat-icon class="btAction">add</mat-icon>
+              </button> -->
+          Ações
+        </mat-header-cell>
 
-    <!--  Status -->
-    <ng-container matColumnDef="ativo" class="active-column">
-      <mat-header-cell  *matHeaderCellDef class="active-column" mat-sort-header>Status</mat-header-cell>
-      <mat-cell  *matCellDef="let item" class="active-column">{{item.ativo}}</mat-cell>
-    </ng-container>
+        <mat-cell *matCellDef="let item" class="action-column">
+          <button
+            mat-icon-button
+            color="accent"
+            aria-label="Editar Employee"
+            (click)="goToEditEmp(item)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
 
-    <ng-container matColumnDef="Actions" class="action-column" >
-      <mat-header-cell *matHeaderCellDef class="action-column">
-        <!-- <button mat-mini-fab color="accent" aria-label="Adicionar Employee" class="action-column-header" routerLink="novoEmployee">
-          <mat-icon class="btAction">add</mat-icon>
-        </button> -->
-        Ações
-      </mat-header-cell>
+          <button
+            mat-icon-button
+            color="warn"
+            aria-label="Deletar Employee"
+            (click)="goToDelete(item)"
+          >
+            <mat-icon>delete</mat-icon>
+            <!-- <button mat-icon-button color="warn" aria-label="Deletar Currículo">
+                  <mat-icon>delete</mat-icon> -->
+          </button>
+        </mat-cell>
+      </ng-container>
 
-      <mat-cell *matCellDef="let item"  class="action-column">
-        <button mat-icon-button color="accent" aria-label="Editar Employee" (click)="goToEditEmp(item)" >
-          <mat-icon>edit</mat-icon>
-        </button>
-
-        <button mat-icon-button  color="warn" aria-label="Deletar Employee" (click)="goToDelete(item)" >
-          <mat-icon>delete</mat-icon>
-          <!-- <button mat-icon-button color="warn" aria-label="Deletar Currículo">
-            <mat-icon>delete</mat-icon> -->
-        </button>
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row  *matRowDef="let row; columns: displayedColumns"></mat-row>
-
-  </mat-table>
-  <mat-paginator [pageSizeOptions]="[3,5,10,25,100]" aria-labels = "Qtde por página" class="mat-elevation-z8"></mat-paginator>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator
+      [pageSizeOptions]="[3, 5, 10, 25, 100]"
+      aria-labels="Qtde por página"
+      class="mat-elevation-z8"
+    >
+    </mat-paginator>
+  </div>
+  <ng-template #loading>
+    <div class="loadingSpinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
 </div>

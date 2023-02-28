@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,} from '@angular/router';
 
+
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
@@ -13,7 +14,7 @@ export class EmployeeComponent {
 
   ngOnInit(){}
 
-  
+
   onRoute(data:String){
     var navUrl:string=''
 

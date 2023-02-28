@@ -77,5 +77,15 @@ mat-paginator{
   width:700px;
 }
 
+.loadingSpinner{
+  padding:25px;
+  margin-top:15%;
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  background-color: rgba(0,0,0,0.15)
+
+}
+
 
 

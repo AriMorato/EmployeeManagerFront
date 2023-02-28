@@ -4,6 +4,7 @@ import { NonNullableFormBuilder } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatProgressSpinner } from '@angular/material/progress-spinner'
 import { Router, ActivatedRoute} from '@angular/router';
 import { Employee } from '../../model/employee';
 import { EmloyeeService } from '../../servicos/emloyee.service';
@@ -22,6 +23,7 @@ export class EmployeeListComponent implements OnInit {
   lstDepartement:Observable<Departament[]> | null = null;
 
   postCriteria:any;
+  
 
   /* dataSource = new MatTableDataSource<Employee>(); */
   dataSourse !: MatTableDataSource<Employee>;
@@ -80,6 +82,7 @@ export class EmployeeListComponent implements OnInit {
    this.restApi.lstEmployee
     ().subscribe((res:any)=>{
       this.postCriteria = res;
+      this.lstEmployee = this.postCriteria;
       this.dataSourse = new MatTableDataSource(this.postCriteria);
       this.dataSourse.paginator = this.paginator;
 

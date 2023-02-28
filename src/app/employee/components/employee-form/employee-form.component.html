@@ -18,11 +18,17 @@
         </p>
         <p>
           <mat-form-field class="partial-width">
-            <input matInput placeholder="Nascimento" formControlName="dataNascimento" />
+            <input matInput [matDatepicker] = "picker" placeholder="Nascimento" formControlName="dataNascimento" />
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="partial-width">
-            <input matInput placeholder="Contratação" formControlName="dataContratacao" />
+            <input matInput [matDatepicker] = "picker2"  placeholder="Contratação" formControlName="dataContratacao" />
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
         </p>
         <p class="depSelect">
